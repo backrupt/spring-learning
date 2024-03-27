@@ -1,0 +1,4 @@
+Spring config
+<util:properties id="db" location="/WEB-INF/database.properties" />
+jsp
+<spring:eval expression="@db.getProperty('jdbc.password')" />

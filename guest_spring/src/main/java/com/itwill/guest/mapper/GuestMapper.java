@@ -5,6 +5,7 @@ import java.util.List;
 import org.apache.catalina.User;
 import org.apache.ibatis.annotations.Delete;
 import org.apache.ibatis.annotations.Insert;
+import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
 import org.apache.ibatis.annotations.ResultType;
 import org.apache.ibatis.annotations.Select;
@@ -13,6 +14,7 @@ import org.apache.ibatis.annotations.Update;
 
 import com.itwill.guest.Guest;
 
+@Mapper
 public interface GuestMapper {
 	
 	@SelectKey(before = true, resultType = Integer.class,keyProperty = "guestNo" ,statement ="select guest_guest_no_seq.nextval from dual")

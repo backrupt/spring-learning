@@ -35,11 +35,11 @@
 </p>
 <ul>
 	<li>문자열리터럴(EL):${'KIM'.replace('K','N')}</li>
-	<li>문자열리터럴(SPEL):<s:eval expression="'KIM'.replace('K','N')"/> </li>
+	<li>문자열리터럴(SPEL):<s:eval expression="'KIM'.replace('K','N')"></s:eval> </li>
 	<li>숫자리터럴(EL):${12345+347834687}</li>
-	<li>숫자리터럴(SPEL):<s:eval expression="12345+347834687"/></li>
+	<li>숫자리터럴(SPEL):<s:eval expression="12345+347834687"></s:eval></li>
 	<li>논리리터럴(EL):${true}</li>
-	<li>논리리터럴(SPEL):<s:eval expression="true"/></li>
+	<li>논리리터럴(SPEL):<s:eval expression="true"></s:eval> </li>
 	<li>변수1(EL String Wrapper):${price0},${name0},${price1},${name1},${married1}</li>
 	<li>변수2(EL Bean):${guest.guest_name},${guest.guest_email}</li>
 	<li>
@@ -86,10 +86,12 @@
 		
 	</li>
 	<li>
+	 
 		@를 이용해서 SpringContainer에 등록된 빈사용가능
 		- @elBean:<s:eval expression="@elBean.toString()"/><br/>
 		- @elBean.member1:<s:eval expression="@elBean.member1"/><br/>
 		- @elBean.printMembers():<s:eval expression="@elBean.printMembers()"/><br/>
+	
 	</li>
 </ul>
 </body>

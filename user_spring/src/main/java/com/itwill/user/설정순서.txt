@@ -1,0 +1,4 @@
+1. application.properties 에 datasource 설정
+2. @Repository,@Service,@Controller 추가 
+3. UserMapper.java 인터페이스에 @Mapper 추가
+4. @Autowire 추가

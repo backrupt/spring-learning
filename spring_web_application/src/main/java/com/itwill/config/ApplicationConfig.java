@@ -7,15 +7,17 @@ import org.springframework.context.support.ResourceBundleMessageSource;
 
 @Configuration
 public class ApplicationConfig {
-	/***************MessageSource객체등록******************
-	@Bean("messageSource")
+	/***************MessageSource객체등록******************/
+	//@Bean("messageSource")
 	public MessageSource messageSource() {
 		ResourceBundleMessageSource resourceBundleMessageSource=
 				new ResourceBundleMessageSource();
 		resourceBundleMessageSource.setBasenames("messages/messages","messages/user");
+		resourceBundleMessageSource.setDefaultEncoding("UTF-8");
+		
 		return resourceBundleMessageSource;
 	}
-	*/
+	
 	
 	/*
 	 application.properties파일의 값얻기위한객체

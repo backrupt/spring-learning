@@ -3,6 +3,7 @@ package com.itwill.guest;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Service;
 /*
  * - 방명록(guest) 관리 비즈니스로직(업무)를 수행하는 클래스
@@ -18,6 +19,7 @@ public class GuestService{
 		public static final int GUEST_SEARCH_BY_CONTENT=3;
 	
 		@Autowired
+		@Qualifier("guestDaoImplMyBatis")
 		private GuestDao guestDao;
 		public GuestService() throws Exception{
 			System.out.println("### GuestService()생성자 호출");
