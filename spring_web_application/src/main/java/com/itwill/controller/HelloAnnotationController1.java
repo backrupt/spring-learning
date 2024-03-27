@@ -15,6 +15,6 @@ public class HelloAnnotationController1 {
 	public String hello1(HttpServletRequest request) {
 		System.out.println("### HelloAnnotationController1().hello1() 메소드호출");
 		request.setAttribute("msg", "받아라얍");
-		return "forward:/WEB-INF/views/hello1.jsp";
+		return "hello1";
 	}
 }

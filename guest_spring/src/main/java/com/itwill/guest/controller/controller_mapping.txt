@@ -1,0 +1,9 @@
+<<요청 url(command)>>
+/guest_main.do		   --> DispatcherServlet --> [GuestMainController		 ] --forward --> guest_main.jsp
+/guest_list.do		   --> DispatcherServlet --> [GuestListController		 ] --forward --> guest_list.jsp
+/guest_view.do		   --> DispatcherServlet --> [GuestViewController		 ] --forward --> guest_view.jsp
+/guest_write_form.do   --> DispatcherServlet --> [GuestWriteFormController	 ] --forward --> guest_write_form.jsp
+/guest_write_action.do --> DispatcherServlet --> [GuestWriteActionController ] --redirect--> guest_list.do
+/guest_modify_form.do  --> DispatcherServlet --> [GuestModifyFormController  ] --forward --> guest_modify_form.jsp
+/guest_modify_action.do--> DispatcherServlet --> [GuestModifyActionController] --redirect--> guest_view_do
+/guest_remove_action.do--> DispatcherServlet --> [GuestRemoveActionController] --redirect--> guest_list.do
