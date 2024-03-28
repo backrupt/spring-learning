@@ -9,9 +9,9 @@ public interface UserService {
 
 	/*
 	 * 회원로그인
-	 *  0:아이디존재안함
-	 * 	1:패쓰워드 불일치
-	 * 	2:로그인성공(세션)
+	 *  아이디존재안함 --> throw UserNotFoundException
+	 * 	패쓰워드 불일치--> throw PasswordMismatchException
+	 *  로그인성공(세션)
 	 */
 	int login(String userId, String password) throws Exception;
 

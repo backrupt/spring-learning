@@ -1,0 +1,11 @@
+<< Spring Boot App --> SpringBootGuestApplication >>
+  
+
+@SpringBootApplication
+public class SpringBootGuestApplication {
+
+	public static void main(String[] args) {
+		SpringApplication.run(SpringBootGuestApplication.class, args);
+	}
+
+}

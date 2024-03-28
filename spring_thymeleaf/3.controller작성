@@ -1,0 +1,10 @@
+
+<<HelloController 작성 annotation 기술 >>
+
+@Controller
+public class HelloThymeleafController {
+	@RequestMapping("/hello_thymeleaf")
+	public String hello() {
+		return "hello_thymeleaf";
+	}
+}

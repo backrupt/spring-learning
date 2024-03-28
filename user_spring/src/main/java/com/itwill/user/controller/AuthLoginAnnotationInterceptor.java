@@ -71,8 +71,11 @@ public class AuthLoginAnnotationInterceptor implements HandlerInterceptor {
 		***************************/
 		MyAnnotation myAnnotation =  handlerMethod.getMethodAnnotation(MyAnnotation.class);
 		if(myAnnotation!=null) {
-			String url=myAnnotation.value();
-			response.sendRedirect(url);
+			String path =myAnnotation.value();
+			int age=myAnnotation.age();
+			System.out.println(path);
+			System.out.println(age);
+			response.sendRedirect(path);
 			return false;
 		}
 		

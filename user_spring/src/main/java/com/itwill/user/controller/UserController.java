@@ -7,6 +7,7 @@ import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.itwill.user.User;
 import com.itwill.user.UserService;
@@ -32,6 +33,7 @@ import oracle.jdbc.proxy.annotation.Post;
 public class UserController {
 	@Autowired
 	private UserService userService;
+	//@MyAnnotation(value = "http://www.daum.net",age=33)
 	@GetMapping("/user_main")
 	public String user_main_g() {
 		return "user_main";
@@ -44,6 +46,11 @@ public class UserController {
 	public String user_write_form() {
 		return "user_write_form";
 	}
+	@GetMapping("/user_login_form")
+	public String user_login_form() {
+		return "user_login_form";
+	}
+	/*
 	@PostMapping("/user_write_action")
 	public String user_write_action(User user,Model model) throws Exception {
 		int result = userService.create(user);
@@ -58,10 +65,32 @@ public class UserController {
 		}
 		return "user_login_form";
 	}
-	@GetMapping("/user_login_form")
-	public String user_login_form() {
-		return "user_login_form";
+	*/
+	/*@PostMapping("/user_write_action")
+	public String user_write_action(@ModelAttribute("fuser") User user,Model model) throws Exception {
+		try {
+			userService.create(user);
+			return "redirect:user_login_form";
+		}catch (ExistedUserException e) {
+			model.addAttribute("msg",e.getMessage());
+			return "user_write_form";
+		}
 	}
+	*/
+	
+	@PostMapping("/user_write_action")
+	public String user_write_action(@ModelAttribute("fuser") User user,RedirectAttributes redirectAttributes) throws Exception {
+		try {
+			userService.create(user);
+			return "redirect:user_login_form";
+		}catch (ExistedUserException e) {
+			redirectAttributes.addFlashAttribute("msg", e.getMessage());
+			redirectAttributes.addFlashAttribute("fuser", user);
+			return "redirect:user_write_form";
+		}
+	}
+	/*
+	/*
 	@PostMapping("/user_login_action")
 	public String user_login_action(User user,Model model,HttpSession session)  throws Exception{
 		int result = userService.login(user.getUserId(), user.getPassword());
@@ -82,9 +111,29 @@ public class UserController {
 		}
 		return "user_main";
 	}
+	*/
+	@PostMapping("/user_login_action")
+	public String user_login_action(@ModelAttribute User user,RedirectAttributes redirectAttributes,HttpSession session)  throws Exception{
+		try {
+			userService.login(user.getUserId(), user.getPassword());
+			session.setAttribute("sUserId", user.getUserId());
+			
+			return "user_main";
+		}catch (UserNotFoundException e) {
+			redirectAttributes.addFlashAttribute("fuser",user);
+			redirectAttributes.addFlashAttribute("msg1",e.getMessage());
+			return "redirect:user_login_form";
+		}catch (PasswordMismatchException e) {
+			redirectAttributes.addFlashAttribute("fuser",user);
+			redirectAttributes.addFlashAttribute("msg2",e.getMessage());
+			return "redirect:user_login_form";
+		}
+	
+	}
+	/*
 	@GetMapping("/user_view")
 	public String user_view(HttpSession session,Model model) throws Exception{
-		/*******login check******/
+		*******login check******
 		String sUserId = (String)session.getAttribute("sUserId");
 		if(sUserId==null) {
 			return "redirect:user_login_form";
@@ -93,9 +142,24 @@ public class UserController {
 		model.addAttribute("loginUser", user);
 		return "user_view";
 	}
+	*/
+	@LoginCheck()
+	@GetMapping("/user_view")
+	public String user_view(HttpSession session ,Model model) throws Exception{
+		String sUserId=(String)session.getAttribute("sUserId");
+		/*******login check******
+		if(sUserId==null) {
+			return "redirect:user_main";
+		}
+		************************/
+		User loginUser = userService.findUser(sUserId);
+		model.addAttribute("loginUser", loginUser);
+		return "user_view";
+	}
+	/*
 	@PostMapping("/user_modify_form")
 	public String user_modify_form(HttpSession session,User user,Model model) throws Exception{
-		/*******login check******/
+		*******login check******
 		String sUserId = (String)session.getAttribute("sUserId");
 		if(sUserId==null) {
 			return "redirect:user_login_form";
@@ -104,10 +168,24 @@ public class UserController {
 		model.addAttribute("loginUser", tempuser);
 		return "user_modify_form";
 	}
-	
+	*/
+	@LoginCheck()
+	@PostMapping("/user_modify_form")
+	public String user_modify_form(HttpSession session,Model model) throws Exception{
+		String sUserId=(String)session.getAttribute("sUserId");
+		/*******login check******
+		if(sUserId==null) {
+			return "redirect:user_main";
+		}
+		************************/
+		User loginUser = userService.findUser(sUserId);
+		model.addAttribute("loginUser", loginUser);
+		return "user_modify_form";
+	}
+	/*
 	@PostMapping("/user_modify_action")
 	public String user_modify_action(HttpSession session,User user) throws Exception{
-		/*******login check******/
+		*******login check******
 		String sUserId = (String)session.getAttribute("sUserId");
 		if(sUserId==null) {
 			return "redirect:user_login_form";
@@ -116,10 +194,24 @@ public class UserController {
 		userService.update(user);
 		return "redirect:user_view";
 	}
-	
+	*/
+	@LoginCheck()
+	@PostMapping("/user_modify_action")
+	public String user_modify_action(@ModelAttribute User user, HttpSession session) throws Exception{
+		String sUserId=(String)session.getAttribute("sUserId");
+		/*******login check******
+		if(sUserId==null) {
+			return "redirect:user_main";
+		}
+		************************/
+		user.setUserId(sUserId);
+		userService.update(user);
+		return "redirect:user_view";
+	}
+	/*
 	@PostMapping("/user_remove_action")
 	public String user_remove_action(HttpSession session)throws Exception {
-		/*******login check******/
+		*******login check******
 		String sUserId = (String)session.getAttribute("sUserId");
 		if(sUserId==null) {
 			return "redirect:user_login_form";
@@ -128,10 +220,24 @@ public class UserController {
 		session.invalidate();
 		return "redirect:user_main";
 	}
-	
+	*/
+	@LoginCheck()
+	@PostMapping("/user_remove_action")
+	public String user_remove_action(HttpSession session)throws Exception {
+		String sUserId=(String)session.getAttribute("sUserId");
+		/*******login check******
+		if(sUserId==null) {
+			return "redirect:user_main";
+		}
+		************************/
+		userService.remove(sUserId);
+		session.invalidate();
+		return "redirect:user_main";
+	}
+	/*
 	@GetMapping("/user_logout_action")
 	public String user_logout_action(HttpSession session) {
-		/*******login check******/
+		*******login check******
 		String sUserId = (String)session.getAttribute("sUserId");
 		if(sUserId==null) {
 			return "redirect:user_login_form";
@@ -139,7 +245,23 @@ public class UserController {
 		session.invalidate();
 		return "redirect:user_main";
 	}
-	
+	*/
+	@LoginCheck()
+	@GetMapping("/user_logout_action")
+	public String user_logout_action(HttpSession session) {
+		String sUserId=(String)session.getAttribute("sUserId");
+		/*******login check******
+		if(sUserId==null) {
+			return "redirect:user_main";
+		}
+		************************/
+	    session.invalidate();
+		return "redirect:user_main";
+	}
+	@ExceptionHandler(Exception.class)
+	public String user_exception_handler(Exception e) {
+		return "user_error";
+	}
 	
 	
 	

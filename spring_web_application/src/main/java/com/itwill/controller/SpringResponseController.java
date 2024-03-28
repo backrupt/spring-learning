@@ -115,7 +115,7 @@ public class SpringResponseController {
 			  << mcv-config-view-resolver.xml >>
 			  <!-- InternalResourceViewResolver -->
 			  <bean id="myInternalResourceViewResolver" 
-					class="org.springframework.web.servlet.view.InternalResourceViewResolver"/>	  
+					class="org.springfram		ework.web.servlet.view.InternalResourceViewResolver"/>	  
 				  
 			*/
 			return "redirect:response_redirect_view_name.jsp";
