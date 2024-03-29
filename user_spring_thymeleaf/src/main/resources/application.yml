@@ -1,0 +1,9 @@
+#server:
+#  port: 80
+#  servlet.context-path: /user_spring
+#  servlet: 
+#    encoding: 
+#      charset: UTF-8
+#      enabled: true
+#      force: true
+#      

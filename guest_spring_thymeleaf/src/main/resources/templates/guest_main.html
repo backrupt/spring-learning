@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<title>방명록 관리</title>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<link rel=stylesheet href="css/styles.css" type="text/css">
+<link rel=stylesheet href="css/guest.css" type="text/css">
+<link rel="icon" href="image/favicon-32x32.png">
+<style type="text/css" media="screen">
+</style>
+</head>
+<body bgcolor=#FFFFFF text=#000000 leftmargin=0 topmargin=0
+	marginwidth=0 marginheight=0>
+	<!-- container start-->
+	<div id="container">
+		<!-- header start -->
+		<div id="header" th:insert="~{include_common::top}">
+			<!-- include_common::top start-->
+			<!-- include_common::top end-->
+		</div>
+		<!-- header end -->
+		<!-- navigation start-->
+		<div id="navigation" th:insert="~{include_common::left}">
+			<!-- include_common :: left start-->
+			<!-- include_common :: left end-->
+		</div>
+		<!-- navigation end-->
+		<!-- wrapper start -->
+		<div id="wrapper">
+			<!-- content start -->
+			<!-- include_content.jsp start-->
+
+			<div id="content">
+				<object width="540px" height="350px">
+					<embed src="image/enter.png" width="540px" height="350px"></embed>
+				</object>
+			</div>
+			<!-- include_content.jsp end-->
+			<!-- content end -->
+		</div>
+		<!--wrapper end-->
+		<div id="footer" th:insert="~{include_common::bottom}">
+			<!-- include_common::bottom start-->
+			<!-- include_common::bottom end-->
+		</div>
+	</div>
+	<!--container end-->
+</body>
+</html>

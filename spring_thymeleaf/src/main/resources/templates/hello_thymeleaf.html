@@ -144,13 +144,17 @@
 		
 		</ul>
 		<h3>링크[@]</h3>
-		<div>
-				
+		<div th:with="no=1,name='lee',addr='jeju'">
+			<img src='image/thymeleaf.png' th:src="@{image/thymeleaf.png}" width="50"/><br>		
+			<a href='view.html' th:href="@{view(no=${no},name=${name},addr=${addr})}" >상세보기</a>
 		</div>	
+		
 		<h3>레이아웃[~ , :: ]</h3>
 		<div>
-			<div>~{html파일이름 :: 템플릿조각 이름}</div>
-  			<div>~{html파일이름 :: 템플릿조각 이름}</div>
+			<div th:insert="~{layout/include_common::top}">~{html파일이름 :: 템플릿조각 이름}</div>
+			<div th:replace="~{layout/include_common::top}">~{html파일이름 :: 템플릿조각 이름}</div>
+			<div th:insert="~{layout/include_common::bottom}">~{html파일이름 :: 템플릿조각 이름}</div>
+			<div th:replace="~{layout/include_common::bottom}">~{html파일이름 :: 템플릿조각 이름}</div>
 		</div>	
 		
 	</div>

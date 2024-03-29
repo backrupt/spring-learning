@@ -5,30 +5,32 @@
 <title>Insert title here</title>
 </head>
 <body>
-<h1 >Hello Thymeleaf!!![publisher]</h1><hr>
-<div>user 님안녕하세요</div>
+<h1 th:text="'Hello Thymleaf!!![developer]'">Hello Thymeleaf!!![publisher]</h1><hr>
+<div th:text="${sUserId}+' 님 안녕하세요'">user 님안녕하세요</div>
+<div>[[${sUserId}]] 님 안녕하세요.</div>
+<div>[['Hello Thymleaf!!![developer]']]</div>
 <hr>
-<h1 ></h1><hr>
-<div></div>
+
 <div>
-	<a href='#'  >로그아웃</a>
-	<a href='#' >로그인</a>
+	<a href='#' th:if="${sUserId!=null}" >로그아웃</a>
+	<a href='#' th:if="${sUserId==null}">로그인</a>
 </div>
 <br>
-
-	<a href="">로그아웃</a><br>
-	<a href="">정보보기</a><br>
-	<a href="">정보수정</a><br>
+	<th:block th:if="${sUserId!=null}">	
+		<a href="">로그아웃</a><br>
+		<a href="">정보보기</a><br>
+		<a href="">정보수정</a><br>
+	</th:block>
 
 <br>
-
-	<a href="">로그인</a><br>
-	<a href="">회원가입</a><br>
-	<a href="">나가기</a><br>
-
-<div >
-  <p >User is an administrator</p>
-  <p >User is a manager</p>
+	<th:block th:unless="${sUserId!=null}">
+		<a href="">로그인</a><br>
+		<a href="">회원가입</a><br>
+		<a href="">나가기</a><br>
+	</th:block>
+<div th:switch="${role}" th:with="role='manager'">
+  <p th:case="admin">User is an administrator</p>
+  <p th:case="manager">User is a manager</p>
 </div>
 
 

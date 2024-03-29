@@ -1,0 +1,43 @@
+
+①HandlerInterceptor 인터페이스,HandlerInterceptorAdapter 추상클래스구현
+	/***********************************************************************/
+	public class AuthLoginInterceptor extends HandlerInterceptorAdapter {
+		public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler)
+			throws Exception {}
+		@Override
+		public void postHandle(HttpServletRequest request, HttpServletResponse response, Object handler,
+				ModelAndView modelAndView) throws Exception {}
+		@Override
+		public void afterCompletion(HttpServletRequest request, HttpServletResponse response, Object handler, Exception ex)
+				throws Exception {}	
+	}
+	
+
+②mvc-config.xml에 mvc:interceptor설정
+	/***********************************************************************/
+	<mvc:interceptors>
+	    <mvc:interceptor>
+	        <mvc:mapping path="/**"/>  
+	        <bean class="com.itwill.user.controller.AuthLoginAnnotationInterceptor" />
+	    </mvc:interceptor>
+    </mvc:interceptors>
+    
+③LoginCheck 어노테이션생성
+	/***********************************************************************/
+	@Retention(RetentionPolicy.RUNTIME)
+	@Target(ElementType.METHOD)
+	public @interface LoginCheck {
+		
+	}   
+ 
+④LoginCheck 어노테이션 UserController에 적용
+	/***********************************************************************/
+	@Controller
+	public class UserController {
+		@LoginCheck
+		@RequestMapping(value = "/user_view")
+		public String user_view(){}
+		@LoginCheck
+		@RequestMapping(value = "/user_list")
+		public String user_list() {	}
+	}

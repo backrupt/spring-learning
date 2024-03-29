@@ -1,0 +1,105 @@
+
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<title>방명록 관리</title>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<link rel="stylesheet" href="css/styles.css">
+<link rel="stylesheet" href="css/guest.css">
+<link rel="icon" href="image/favicon-32x32.png">
+<script src="js/guest.js"></script>
+</head>
+<body bgcolor=#FFFFFF text=#000000 leftmargin=0 topmargin=0
+	marginwidth=0 marginheight=0>
+	<!-- container start-->
+	<div id="container">
+		<!-- header start -->
+		<div id="header" th:insert="~{include_common::top}">
+			<!-- include_common_top.html start-->
+			<!-- include_common_top.html end  -->
+		</div>
+		<!-- header end -->
+		<!-- navigation start-->
+		<div id="navigation" th:insert="~{include_common::left}">
+			<!-- include_common_left.html start-->
+			<!-- include_common_left.html end  -->
+		</div>
+		<!-- navigation end-->
+		<!-- wrapper content start -->
+		<div id="wrapper">
+			<div id="content">
+				<table border=0 cellpadding=0 cellspacing=0>
+					<tr>
+						<td>
+							<!--contents--> <br />
+							<table style="padding-left: 10px" border=0 cellpadding=0
+								cellspacing=0>
+								<tr>
+									<td bgcolor="f4f4f4" height="22">&nbsp;&nbsp;<b>방명록 관리
+											- 방명록 상세보기</b></td>
+								</tr>
+							</table> <!-- view Form  -->
+
+
+							<form name="f" method="post" th:object="${guest}">
+								<input type="hidden" name="guest_no" value="159" th:value="*{guestNo}"/>
+								<!-- <input th:field="*{guest_no}" type="hidden" name="guest_no" value="206" field를 쓰면 name,value 동시 설정 가능/> -->
+								<table border="0" cellpadding="0" cellspacing="1" width="590"
+									bgcolor="BBBBBB">
+									<tr>
+										<td width=100 align=center bgcolor="E6ECDE" height="22">번호</td>
+										<td width=490 bgcolor="ffffff" align="left"
+											style="padding-left: 10px" th:text="${guest.guestNo}">159</td>
+									</tr>
+									<tr>
+										<td width=100 align=center bgcolor="E6ECDE" height="22">이름</td>
+										<td width=490 bgcolor="ffffff" align="left"
+											style="padding-left: 10px" th:text="*{guestName}">ㄴㅇ</td>
+									</tr>
+									<tr>
+										<td width=100 align=center bgcolor="E6ECDE" height="22">날짜</td>
+										<td width=490 bgcolor="ffffff" align="left"
+											style="padding-left: 10px" th:text="*{guestName}">2023-09-08</td>
+									<tr>
+										<td width=100 align=center bgcolor="E6ECDE" height="22">홈페이지</td>
+										<td width=490 bgcolor="ffffff" align="left"
+											style="padding-left: 10px" th:text="*{guestHomepage}">ㅁㄴㄴㅇㅁㄴㅇ</td>
+									</tr>
+									<tr>
+										<td width=100 align=center bgcolor="E6ECDE" height="22">제목</td>
+										<td width=490 bgcolor="ffffff" align="left"
+											style="padding-left: 10px" th:text="*{guestTitle}">수정</td>
+									</tr>
+									<tr>
+										<td width=100 align=center bgcolor="E6ECDE" height="110">내용</td>
+										<td width=490 bgcolor="ffffff" align="left"
+											style="padding-left: 10px" th:text="*{guestContent}">ㄴㅇㅁㄴㅇㅁㄴㅇ</td>
+									</tr>
+								</table>
+							</form> <br />
+							<table width=590 border=0 cellpadding=0 cellspacing=0>
+								<tr>
+									<td align=center><input type="button" value="수정"
+										onClick="guestModifyForm();"> &nbsp; <input
+										type="button" value="삭제" onClick="guestRemove();">
+										&nbsp; <input type="button" value="목록" onClick="guestList()"></td>
+								</tr>
+							</table>
+						</td>
+					</tr>
+				</table>
+			</div>
+
+
+		</div>
+		<!-- wrapper content end-->
+		<!-- footer start-->
+		<div id="footer" th:insert="~{include_common::bottom}">
+			<!-- include_common_bottom.html start-->
+			<!-- include_common_bottom.html end  -->
+		</div>
+		<!-- footer end -->
+	</div>
+	<!--container end-->
+</body>
+</html>

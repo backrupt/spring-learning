@@ -1,6 +1,7 @@
 package com.itwill.thymeleaf.controller;
 
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -10,6 +11,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import com.itwill.thymeleaf.domain.Board;
 import com.itwill.thymeleaf.domain.Guest;
 import com.itwill.thymeleaf.domain.User;
 
@@ -22,6 +24,22 @@ public class HelloThymeleafController {
 		model.addAttribute("sUserId","guard");
 		model.addAttribute("user",new User("aaaa", "aaaa","에이님", "aaaa@gmail.com"));
 		return "index";
+	}
+	@GetMapping("/board_list")
+	public String board_list(Model model) {
+		List<Board> boardList=new ArrayList<>();
+		boardList.add(new Board(1,"제목1","작성자1","내용1",new Date()));
+		boardList.add(new Board(2,"제목2","작성자2","내용2",new Date()));
+		boardList.add(new Board(3,"제목3","작성자3","내용3",new Date()));
+		boardList.add(new Board(4,"제목4","작성자4","내용4",new Date()));
+		boardList.add(new Board(5,"제목5","작성자5","내용5",new Date()));
+		boardList.add(new Board(6,"제목6","작성자6","내용6",new Date()));
+		boardList.add(new Board(7,"제목7","작성자7","내용7",new Date()));
+		boardList.add(new Board(8,"제목8","작성자8","내용8",new Date()));
+		boardList.add(new Board(9,"제목9","작성자9","내용9",new Date()));
+		boardList.add(new Board(10,"제목10","작성자10","내용10",new Date()));
+		model.addAttribute("boardList", boardList);
+		return "board_list";
 	}
 	
 	

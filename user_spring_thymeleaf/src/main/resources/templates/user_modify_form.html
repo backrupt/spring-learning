@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<title>사용자 관리</title>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<link rel=stylesheet href="css/styles.css" type="text/css">
+<link rel=stylesheet href="css/user.css" type="text/css">
+<script type="text/javascript">
+	function userModify() {
+		document.f.action = "user_modify_action";
+		document.f.submit();
+
+	}
+</script>
+</head>
+<body bgcolor=#FFFFFF text=#000000 leftmargin=0 topmargin=0
+	marginwidth=0 marginheight=0>
+	<!-- container start-->
+	<div id="container">
+		<!-- header start -->
+		<div id="header" th:insert="~{include_common::top}">
+			<!-- include_common_top.html start-->
+			<!-- include_common_top.html end-->
+		</div>
+		<!-- header end -->
+		<!-- navigation start-->
+		<div id="navigation" th:insert="~{include_common::left}">
+			<!-- include_common_left.html start-->
+			<!-- include_common_left.html end-->
+		</div>
+		<!-- navigation end-->
+		<!-- wrapper start -->
+		<div id="wrapper">
+			<!-- content start -->
+
+			<!-- include_content.jsp start-->
+			<div id="content">
+
+				<table border=0 cellpadding=0 cellspacing=0>
+					<tr>
+						<td>
+							<!--contents--> <br />
+							<table style="padding-left: 10px" border=0 cellpadding=0
+								cellspacing=0>
+								<tr>
+									<td bgcolor="f4f4f4" height="22">&nbsp;&nbsp;<b>사용자 관리
+											- 사용자수정</b></td>
+								</tr>
+							</table> <!-- update Form  -->
+							<form name="f" method="post">
+								<input type="hidden" name="userId" value="guard" />
+								<table border="0" cellpadding="0" cellspacing="1" width="590"
+									bgcolor="BBBBBB">
+									<tr>
+										<td width=100 align=center bgcolor="E6ECDE" height="22">사용자
+											아이디</td>
+										<td width=490 bgcolor="ffffff" style="padding-left: 10px"
+											align="left" th:text="${loginUser.userId}">guard</td>
+									</tr>
+									<tr>
+										<td width=100 align=center bgcolor="E6ECDE" height="22">비밀번호</td>
+										<td width=490 bgcolor="ffffff" style="padding-left: 10px"
+											align="left"><input type="password" style="width: 150px"
+											name="password" value="1111" th:value="${loginUser.password}"></td>
+									</tr>
+									<tr>
+										<td width=100 align=center bgcolor="E6ECDE" height="22">비밀번호
+											확인</td>
+										<td width=490 bgcolor="ffffff" style="padding-left: 10px"
+											align="left"><input type="password" style="width: 150px"
+											name="password2" value="1111" th:value="${loginUser.password}"></td>
+									</tr>
+									<tr>
+										<td width=100 align=center bgcolor="E6ECDE" height="22">이름</td>
+										<td width=490 bgcolor="ffffff" style="padding-left: 10px"
+											align="left"><input type="text" style="width: 150px"
+											name="name" value="김가드" th:value="${loginUser.name}"></td>
+									</tr>
+									<tr>
+										<td width=100 align=center bgcolor="E6ECDE" height="22">이메일
+											주소</td>
+										<td width=490 bgcolor="ffffff" style="padding-left: 10px"
+											align="left"><input type="text" style="width: 150px"
+											name="email" value="guard@naver.com" th:value="${loginUser.email}"></td>
+									</tr>
+								</table>
+							</form> <br>
+
+							<table width=590 border=0 cellpadding=0 cellspacing=0>
+								<tr>
+									<td align=center><input type="button" value="수정"
+										onClick="userModify()"> &nbsp;</td>
+								</tr>
+							</table>
+
+						</td>
+					</tr>
+				</table>
+			</div>
+			<!-- include_content.jsp end-->
+			<!-- content end -->
+		</div>
+		<!--wrapper end-->
+		<div id="footer" th:insert="~{include_common::bottom}">
+			<!-- include_common_bottom.html start-->
+			<!-- include_common_bottom.html end-->
+		</div>
+	</div>
+	<!--container end-->
+</body>
+</html>

@@ -12,15 +12,17 @@
                 <th>번호</th>
                 <th>제목</th>
                 <th>작성자</th>
+                <th>내용</th>
                 <th>날짜</th>
             </tr>
         </thead>
         <tbody>
-            <tr>
-                <td>1</td>
-                <td>테스트 제목 입니다.</td>
-                <td>김경호</td>
-                <td>2022.03.12</td>
+            <tr th:each="board:${boardList}">
+                <td th:text="${board.boardNo}">1</td>
+                <td th:text="${board.title}">테스트 제목 입니다.</td>
+                <td th:text="${board.writer}">김경호</td>
+                <td th:text="${board.content}">김경호</td>
+                <td th:text="${#calendars.format(board.regDate,'yyyy.MM.dd')}">2022.03.12</td>
             </tr>
         </tbody>
     </table>
