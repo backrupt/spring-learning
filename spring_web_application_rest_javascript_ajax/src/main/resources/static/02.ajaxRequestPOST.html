@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<script type="text/javascript">
+	
+	function ajaxRequestPostIdCheck(){
+		let idStr = document.querySelector('#postForm').id.value;
+		if(idStr==null||idStr=='')return;
+		/*
+		AJAX요청순서
+		*/
+		/*
+		1. XMLHttpRequest객체생성
+		*/
+		let xhr = new XMLHttpRequest();
+		/*
+		2. 요청속성설정 
+		*/
+		/*
+		2-1.open
+		*/
+		xhr.open('POST','02.ajaxRequestPOST');
+		/*
+		2-2.POST(GET) 방식일경우는 요청헤더설정
+		*/
+		xhr.setRequestHeader('Content-type','application/x-www-form-urlencoded');
+		/*
+		2-3.응답이 도착했을때 실행되는 콜백함수등록
+		*/
+		xhr.onload=function(){
+			if(xhr.readyState==4){
+				/*
+				<< xhr.readyState >>
+				The state of the request. 
+				 0=unsent
+				 1=opened
+				 2=headers_received
+				 3=loading
+				 4=done
+				*/
+				let responseJsonObject = JSON.parse(xhr.responseText);
+				/*
+					{"msg":"사용불가능",
+					"data":[],
+					"status":2}
+				*/
+				document.querySelector('#postResultSpan').innerHTML=responseJsonObject.msg;
+				if(responseJsonObject.status==1){
+					document.querySelector('#postResultSpan').style.color='blue'; 
+				}else{
+					document.querySelector('#postResultSpan').style.color='orange'; 
+				}
+			}
+		}
+		/*
+		3.요청 
+		 - xhr.send(요청바디);
+		 - 요청바디: param_name1=param_value1&param_name2=param_value2
+		*/
+		xhr.send(`id=${idStr}`);
+		
+		
+	}
+	/**응답이 도착했을때 실행되는 콜백함수***/
+	function postResponseCallBack(){
+	    
+	    /*
+		<< xhr.readyState >>
+		The state of the request. 
+		 0=unsent
+		 1=opened
+		 2=headers_received
+		 3=loading
+		 4=done
+		*/
+		
+	}
+	
+	
+</script>
+</head>
+<body>
+<h1>AJAX POST요청</h1><hr/>
+<form id="postForm" name="postForm">
+	아이디[POST]:<input  type="text" name="id" id="id" onkeyup="ajaxRequestPostIdCheck()" >
+	<span id="postResultSpan"></span>
+</form>
+</body>
+</html>

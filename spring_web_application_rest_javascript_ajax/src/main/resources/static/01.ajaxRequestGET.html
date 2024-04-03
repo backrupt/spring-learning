@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<script type="text/javascript">
+	
+   
+	function ajaxRequestGetIdCheck(){
+			let idStr=document.f.id.value;
+			if(idStr==null||idStr.trim()=='')return;
+			/*
+			AJAX요청순서
+			*/
+			/*
+			1. XMLHttpRequest객체생성
+			*/
+			let xhr = new XMLHttpRequest();
+			/*
+			2. 요청속성설정 
+			*/
+			xhr.open('GET',`01.ajaxRequestGET/${idStr}`,true); //true는 디폴트라 안넣어줘도 되긴 함
+			/*
+			XMLHttpRequest객체의 onload 이벤트프로퍼티에 콜백함수등록
+			(응답이 도착했을때 실행되는 사용자정의 콜백함수등록)
+			*/
+			xhr.onload = function(){
+				 /*
+			<< xhr.readyState >>
+			The state of the request. 
+			 0=unsent
+			 1=opened
+			 2=headers_received
+			 3=loading
+			 4=done
+		 		*/
+			if(xhr.readyState==4){
+				/*데이터응답이 완전히 이루어졌을때*/
+				let responseStr = xhr.responseText;
+				let spanE = document.getElementById('msg');
+				/*
+					{"msg":"사용불가능",
+					"data":[],
+					"status":2}
+				*/
+				let responseJsonObject = JSON.parse(responseStr);
+				spanE.innerHTML = responseJsonObject.msg;
+				if(responseJsonObject.status==1){
+					spanE.style.color='green'; 
+				}else{
+					spanE.style.color='red'; 
+				}
+			}else{
+				/*데이터응답이오는중*/
+				document.getElementById('msg').innerHTML="<img src='loading.gif' width='15px' heigth='15px'/>"
+			}
+			};
+			/*
+			3.요청
+			*/
+			xhr.send(null); //get방식이라 null넣어줌 request body가 없으니까
+	}	
+	/*
+	응답이 도착했을때 실행되는 사용자정의 콜백함수
+	*/
+	function getResponseCallBack(){
+		  
+		  /*
+			<< xhr.readyState >>
+			The state of the request. 
+			 0=unsent
+			 1=opened
+			 2=headers_received
+			 3=loading
+			 4=done
+		 */
+		
+	 }
+</script>
+</head>
+<body>
+<h1>ajax요청</h1><hr/>
+<form name="f" id="f" action="">
+	아이디:<input type="text" name="id" id="id" onkeyup="ajaxRequestGetIdCheck()" >
+	<span id="msg"></span>
+</form>
+
+<pre>
+ page기반요청
+    1. submit버튼클릭[form.submit()]
+    2. anchor tag 클릭
+    3. location.href=''
+    요청-->기존페이지 DOM Tree 제거(UI사라짐) -->응답(HTML) -->응답HTML로 DOM Tree 다시생성 --> UI렌더링
+ 
+ ajax 요청
+    1. XMLHttpRequest.send()메쏘드사용 
+    
+    요청-->기존페이지 DOM Tree 유지(UI안사라짐) -->응답데이타(text,html,json,xml) -->응답데이타 로 DOM Tree 일부변경 -->  일부UI 렌더링
+</pre>
+</body>
+</html>
+
+
+
+
+
+
+
