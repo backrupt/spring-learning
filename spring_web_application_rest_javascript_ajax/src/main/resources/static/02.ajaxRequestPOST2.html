@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<script type="text/javascript">
+	const ajaxRequestPostIdCheck = async ()=>{ // ()=> 에서 this는 무조건 window
+		let idStr = document.querySelector('#postForm').id.value;
+		if(idStr==null||idStr=='')return;
+		const params={id:idStr};
+		const queryString = new URLSearchParams(params).toString();
+		
+		const response = await fetch(
+						`02.ajaxRequestPOST`,
+						{
+							method:'POST',
+							headers:{
+								"Content-type":"application/x-www-form-urlencoded"
+							},
+							body:queryString
+						});
+		const responseJsonObject = await response.json();
+		console.log(responseJsonObject);
+		
+		document.querySelector('#postResultSpan').innerHTML=responseJsonObject.msg;
+				if(responseJsonObject.status==1){
+					document.querySelector('#postResultSpan').style.color='blue'; 
+				}else{
+					document.querySelector('#postResultSpan').style.color='orange'; 
+				}
+	}
+	
+</script>
+</head>
+<body>
+<h1>AJAX POST요청</h1><hr/>
+<form id="postForm" name="postForm">
+	아이디[POST]:<input  type="text" name="id" id="id" onkeyup="ajaxRequestPostIdCheck()" >
+	<span id="postResultSpan"></span>
+</form>
+</body>
+</html>

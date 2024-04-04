@@ -6,9 +6,10 @@
 <script type="text/javascript">
 	
    
-	function ajaxRequestGetIdCheck(){
+	 function ajaxRequestGetIdCheck(){
 			let idStr=document.f.id.value;
 			if(idStr==null||idStr.trim()=='')return;
+			let responseJsonObject=null;
 			/*
 			AJAX요청순서
 			*/
@@ -19,46 +20,35 @@
 			/*
 			2. 요청속성설정 
 			*/
-			xhr.open('GET',`01.ajaxRequestGET/${idStr}`,true); //true는 디폴트라 안넣어줘도 되긴 함
+			xhr.open('GET',`01.ajaxRequestGET/${idStr}`,true); //true는 디폴트라 안넣어줘도 되긴 함 true면 비동기 false면 동기
 			/*
 			XMLHttpRequest객체의 onload 이벤트프로퍼티에 콜백함수등록
 			(응답이 도착했을때 실행되는 사용자정의 콜백함수등록)
 			*/
 			xhr.onload = function(){
-				 /*
-			<< xhr.readyState >>
-			The state of the request. 
-			 0=unsent
-			 1=opened
-			 2=headers_received
-			 3=loading
-			 4=done
-		 		*/
 			if(xhr.readyState==4){
-				/*데이터응답이 완전히 이루어졌을때*/
-				let responseStr = xhr.responseText;
-				let spanE = document.getElementById('msg');
 				/*
-					{"msg":"사용불가능",
-					"data":[],
-					"status":2}
+				응답이 도착했을때 실행되는 사용자정의 익명콜백함수
 				*/
-				let responseJsonObject = JSON.parse(responseStr);
+				let responseStr = xhr.responseText;
+				responseJsonObject = JSON.parse(responseStr);
+				
+				
+			let spanE = document.getElementById('msg');
 				spanE.innerHTML = responseJsonObject.msg;
 				if(responseJsonObject.status==1){
 					spanE.style.color='green'; 
 				}else{
 					spanE.style.color='red'; 
 				}
-			}else{
-				/*데이터응답이오는중*/
-				document.getElementById('msg').innerHTML="<img src='loading.gif' width='15px' heigth='15px'/>"
 			}
-			};
+		};
 			/*
 			3.요청
 			*/
 			xhr.send(null); //get방식이라 null넣어줌 request body가 없으니까
+			console.log(responseJsonObject);
+			
 	}	
 	/*
 	응답이 도착했을때 실행되는 사용자정의 콜백함수

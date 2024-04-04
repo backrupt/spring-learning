@@ -3,10 +3,16 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
-<script type="text/javascript" src="ajaxRequest.js"></script>
 <script type="text/javascript">
-	
-	
+	const requestServerClock = async ()=>{
+		const response = await fetch('/03.server_clock');
+		const responseServerTime = await response.text();
+		console.log(responseServerTime);
+		document.querySelector('#serverTimeSpan').innerHTML=responseServerTime;
+	};
+	window.addEventListener('load',()=>{
+		setInterval(requestServerClock,1000);
+	});
 </script>
 </head>
 <body>

@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<script type="text/javascript">
+	
+   /*
+	 async function ajaxRequestGetIdCheck(){
+			let idStr=document.f.id.value;
+			if(idStr==null||idStr.trim()=='')return;
+			
+			const requestURI=`01.ajaxRequestGET/${idStr}`;
+			const response = await fetch(requestURI);
+			//응답객체가 promise임
+			const responseJsonObject = await response.json();
+			console.log(responseJsonObject);
+			
+			let spanE = document.getElementById('msg');
+			spanE.innerHTML = responseJsonObject.msg;
+			if(responseJsonObject.status==1){
+				spanE.style.color='green'; 
+			}else{
+				spanE.style.color='red'; 
+			}
+			
+			
+	}
+	 */
+	 const ajaxRequestGetIdCheck = async ()=>{
+			let idStr=document.f.id.value;
+			if(idStr==null||idStr.trim()=='')return;
+			
+			const requestURI=`01.ajaxRequestGET/${idStr}`;
+			const response = await fetch(requestURI);
+			//응답객체가 promise임
+			const responseJsonObject = await response.json();
+			console.log(responseJsonObject);
+			
+			let spanE = document.getElementById('msg');
+			spanE.innerHTML = responseJsonObject.msg;
+			if(responseJsonObject.status==1){
+				spanE.style.color='green'; 
+			}else{
+				spanE.style.color='red'; 
+			}
+			
+			
+	}	
+	
+</script>
+</head>
+<body>
+<h1>ajax요청2</h1><hr/>
+<form name="f" id="f" action="">
+	아이디:<input type="text" name="id" id="id" onkeyup="ajaxRequestGetIdCheck()" >
+	<span id="msg"></span>
+</form>
+
+<pre>
+ page기반요청
+    1. submit버튼클릭[form.submit()]
+    2. anchor tag 클릭
+    3. location.href=''
+    요청-->기존페이지 DOM Tree 제거(UI사라짐) -->응답(HTML) -->응답HTML로 DOM Tree 다시생성 --> UI렌더링
+ 
+ ajax 요청
+    1. XMLHttpRequest.send()메쏘드사용 
+    
+    요청-->기존페이지 DOM Tree 유지(UI안사라짐) -->응답데이타(text,html,json,xml) -->응답데이타 로 DOM Tree 일부변경 -->  일부UI 렌더링
+</pre>
+</body>
+</html>
+
+
+
+
+
+
+

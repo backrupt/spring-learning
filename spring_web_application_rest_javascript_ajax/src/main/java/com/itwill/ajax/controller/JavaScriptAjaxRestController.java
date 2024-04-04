@@ -93,6 +93,46 @@ public class JavaScriptAjaxRestController {
 		resultMap.put("data", data);
 		return resultMap;
 	}
+	@GetMapping(value = "/03.server_clock",produces = "text/plain;charset=UTF-8")
+	public String server_clock() {
+		return new Date().toLocaleString();
+	}
+	@GetMapping(value = "/04.newsTitlesJSON",produces = "application/json;charset=UTF-8")
+	public Map<String,Object> newsTitlesJSON(){
+		int status=0;
+		String msg="";
+		Object data=new ArrayList<>();
+		
+		status=1;
+		msg="성공";
+		data = this.getNewsList();
+		Map<String,Object> resultMap = new HashMap<>();
+		resultMap.put("status", status);
+		resultMap.put("msg", msg);
+		resultMap.put("data", data);
+		return resultMap;
+	}
+	
+	@GetMapping(value = "/suggest",produces = "application/json;charset=UTF-8")
+	public Map<String,Object> suggest(@RequestParam(value = "keyword",defaultValue = "") String keyword ) {
+		int status=0;
+		String msg="";
+		List data=new ArrayList();
+		
+		
+		data = this.search(keyword);
+		msg="";
+		status=data.size();
+		
+		
+		
+		Map<String, Object> resultMap=new HashMap<>();
+		resultMap.put("status", status);
+		resultMap.put("msg", msg);
+		resultMap.put("data", data);
+		return resultMap;
+	}
+	
 	private List<News> getNewsList() {
 		List<News> newsList = new ArrayList<News>();
 		newsList.add(
