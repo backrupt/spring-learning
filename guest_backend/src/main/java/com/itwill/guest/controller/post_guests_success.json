@@ -1,0 +1,16 @@
+{
+	"msg": "쓰기성공",
+	"data": [
+		{
+			"guest_no": 23,
+			"guest_name": "김경호",
+			"guest_date": "2023-09-18 14:37:04",
+			"guest_email": "guard@gmail.com",
+			"guest_homepage": "http://www.naver.com",
+			"guest_title": "타이틀",
+			"guest_content": "컨텐트"
+		}
+	],
+	"status": 1
+}
+

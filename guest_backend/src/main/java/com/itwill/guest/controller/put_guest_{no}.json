@@ -1,0 +1,14 @@
+{
+	"status": 1,
+	"msg": "수정성공",
+	"data": [
+		{
+			"guest_no": "1",
+			"guest_name": "김경가",
+			"guest_date": "2022-03-28",
+			"guest_email": "guard1@naver.com",
+			"guest_title": "방명록 사용법1",
+			"guest_content": "방명록처럼 사용하시면 됩니다1"
+		}
+	]
+}
