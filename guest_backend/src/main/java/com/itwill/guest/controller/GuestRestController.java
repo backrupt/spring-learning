@@ -52,7 +52,7 @@ public class GuestRestController {
 		resultMap.put("status", status);
 		resultMap.put("msg", msg);
 		resultMap.put("data", data); 
-		
+		 
 		return resultMap;
 	}
 	
@@ -145,12 +145,12 @@ public class GuestRestController {
 		
 		try {
 			guestService.guestDelete(guest_no);
-			status=1;
+			status=1;	
 			msg="삭제 성공!";
 		} catch (Exception e) {
 			e.printStackTrace();
 			status=2;
-			msg="방명록삭제 실패";	
+			msg="방명록 삭제 실패";	
 		}
 		
 		
