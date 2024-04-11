@@ -19,6 +19,7 @@ import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.SessionAttribute;
 
 import com.itwill.user.User;
 import com.itwill.user.UserService;
@@ -27,6 +28,7 @@ import com.itwill.user.exception.PasswordMismatchException;
 import com.itwill.user.exception.UserNotFoundException;
 
 import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.Parameter;
 import jakarta.servlet.http.HttpSession;
 
 /*
@@ -149,6 +151,24 @@ public class UserRestController {
 		response.setMessage(ResponseMessage.READ_USER);
 		response.setData(loginUser);
 		HttpHeaders httpHeaders = new HttpHeaders();
+		httpHeaders.setContentType(
+				new MediaType("application","json",Charset.forName("UTF-8")));
+		return new ResponseEntity<Response>(response,httpHeaders,HttpStatus.OK);
+	}
+	
+	@Operation(summary = "회원로그인여부체크")
+	@LoginCheck
+	@GetMapping("/login")
+	public ResponseEntity<Response> login_check(@SessionAttribute(name = "sUserId") @Parameter(hidden = true) String sUserId)throws Exception{
+		//String sUserId = (String) session.getAttribute("sUserId"); HttpSession session으로 받아서 하는 이작업을 해주는 SessionAttribute
+		
+		User loginUser=userService.findUser(sUserId);
+		Response response=new Response();
+		response.setStatus(ResponseStatusCode.LOGIN_SUCCESS);
+		response.setMessage(ResponseMessage.LOGIN_SUCCESS);
+		response.setData(loginUser);
+		
+		HttpHeaders httpHeaders=new HttpHeaders();
 		httpHeaders.setContentType(
 				new MediaType("application","json",Charset.forName("UTF-8")));
 		return new ResponseEntity<Response>(response,httpHeaders,HttpStatus.OK);

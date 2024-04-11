@@ -1,0 +1,75 @@
+
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<title>사용자 관리</title>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<link rel=stylesheet href="css/styles.css" type="text/css">
+<link rel=stylesheet href="css/user.css" type="text/css">
+<style type="text/css" media="screen">
+</style>
+<script type="module" src="./js/user.js"></script>
+</head>
+
+<body bgcolor=#FFFFFF text=#000000 leftmargin=0 topmargin=0
+	marginwidth=0 marginheight=0>
+	<!-- container start-->
+	<div id="container">
+		<!-- header start -->
+		<div id="header">
+			<!-- include_common_top.jsp start-->
+			<h1>
+				<a href="#/user_main">회원관리 FRONTEND[Thymeleaf]</a>
+			</h1>
+			<!-- include_common_top.jsp end-->
+		</div>
+		<!-- header end -->
+		<!-- navigation start-->
+		<div id="navigation">
+			<!-- include_common_left.jsp start-->
+				<p>
+				<strong>메뉴</strong>
+			</p>
+			<ul>
+				<!-- 로그인전 -->
+				<th:block th:if="${#strings.isEmpty(session.sUserId)}">
+				<li><a href="#/user_login_form">로그인</a></li>
+				<li><a href="#/user_write_form">회원가입</a></li>
+				</th:block>
+				<!-- 로그인후 -->
+				<th:block th:unless="${#strings.isEmpty(session.sUserId)}">
+				<li><a href="#" th:text="${session.sUserId}+ ' 님'">guard1 님</a></li>
+				<li><a th:href="@{#/user_view/__${session.sUserId}__}">내정보</a></li>
+				<!-- ${} 안에 ${} 있을시 우선순위 __${}__ 주면 우선순위 높아짐 -->
+				<li><a href="#" id="a_user_logout">로그아웃</a></li>
+				</th:block>
+				
+				<li><a href="http://localhost:8080/swagger-ui/index.html">Swagger</a></li>
+			</ul>
+
+			<!-- include_common_left.jsp end-->
+		</div>
+		<!-- navigation end-->
+		<!-- wrapper start -->
+		<div id="wrapper">
+			<!-- content start -->
+			<!-- include_content.jsp start-->
+
+			<div id="content"></div>
+			<!-- include_content.jsp end-->
+			<!-- content end -->
+		</div>
+		<!--wrapper end-->
+		<div id="footer">
+			<!-- include_common_bottom.jsp start-->
+
+			<p align="center">Copyright (&copy;) By Kimkyoungho.[김경호] All
+				rights reserved.</p>
+
+			<!-- include_common_bottom.jsp end-->
+		</div>
+	</div>
+	<!--container end-->
+</body>
+
+</html>

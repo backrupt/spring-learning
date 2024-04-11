@@ -101,7 +101,10 @@ public class AuthLoginAnnotationInterceptor implements HandlerInterceptor {
 			String contextPath=request.getContextPath();
 			String requestURI=request.getRequestURI().substring(contextPath.length());
 			System.out.println(requestURI);
-			if(!requestURI.startsWith("/user/logout")) {
+			if(requestURI.startsWith("/user/logout")||
+				 requestURI.startsWith("/user/login")) {
+				return true;
+			}
 				/*
 				PUT 	/user/{id} 			- modify user by {id}
 				GET 	/user/{id} 			- GETs the details of the user with {id}
@@ -112,7 +115,7 @@ public class AuthLoginAnnotationInterceptor implements HandlerInterceptor {
 				if(!sUserId.equals(userId)) {
 					throw new UnauthorizedUserException("인증받지않은예외");
 				}
-			}
+			
 			
 		}
 		// preHandle의 return은 컨트롤러 요청 uri로 가도 되냐 안되냐를 허가하는 의미임
