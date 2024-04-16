@@ -7,6 +7,7 @@ import org.springframework.test.annotation.Rollback;
 import com.itwill.jpa.relation.SpringJpaRelationApplicationTests;
 import com.itwill.jpa.relation.entity.Category;
 import com.itwill.jpa.relation.entity.Product;
+import com.itwill.jpa.relation.entity.ProductDetail;
 
 import jakarta.transaction.Transactional;
 
@@ -18,7 +19,7 @@ class ProductRepositoryTest extends SpringJpaRelationApplicationTests{
 	@Test
 	@Rollback(false)
 	@Transactional
-	void productWithCategorySaveAndRead() {
+	void productWithCategorySave() {
 		Category category1 = Category.builder()
 				.code("C1")
 				.name("컴퓨터")
@@ -54,30 +55,49 @@ class ProductRepositoryTest extends SpringJpaRelationApplicationTests{
 		productRepository.save(product2);
 		productRepository.save(product3);
 		
-		Product findProduct1 = productRepository.findById(1L).get();
-		System.out.println(">>>"+findProduct1);
-		System.out.println(">>>"+findProduct1.getCategory());
+//		Product findProduct1 = productRepository.findById(1L).get();
+//		System.out.println(">>>"+findProduct1);
+//		System.out.println(">>>"+findProduct1.getCategory());
 	
 	}
 	
-	
-	
-
-	void productWithProviderSaveAndRead() {
-		
+	@Test
+	@Transactional
+	@Rollback(false)
+	void productWithCategoryRead() {
 		/***** 연관설정 Product-->Provider *****/
 		System.out.println("--------------read-------------");
+		Product product1 =  productRepository.findById(1L).get();
+		System.out.println(">>>:"+product1);
 		
 	}
 	
-
-	void productWithProductDetailSaveAndRead() {
-		
-	
+	@Test
+	@Transactional
+	@Rollback(false)
+	void productWithProductDetailSave() {
+		ProductDetail productDetail = ProductDetail.builder()
+				.description("어려워요!!!!")
+				.build();
+		Product product = Product.builder()
+				.name("스프링시큐리티")
+				.price(60000)
+				.stock(10)
+				.build();
 		/*
 		 * 연관관계설정(OWNER테이블아닌경우)
-		 * Product-->ProductDetail
+		 * Product에 ProductDetail set
+		 * ProductDetail에 Product set
 		 */
+		product.setProductDetail(productDetail);
+		productDetail.setProduct(product);
+		productRepository.save(product);
+	}
+	void productWithProductDetailRead() {
+		Product product2 = productRepository.findById(2L).get();
+		System.out.println(">>>:"+product2);
+		System.out.println(">>>:"+product2.getProductDetail());
+		
 	}
 	
 	

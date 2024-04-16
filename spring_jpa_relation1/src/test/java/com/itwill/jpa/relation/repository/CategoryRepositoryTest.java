@@ -1,5 +1,8 @@
 package com.itwill.jpa.relation.repository;
 
+import java.util.List;
+
+import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.annotation.Rollback;
@@ -17,7 +20,8 @@ class CategoryRepositoryTest extends SpringJpaRelationApplicationTests{
 	@Test
 	@Transactional
 	@Rollback(false)
-	void categoryWithProductsSaveAndReadDelete() {
+	@Disabled
+	void categoryWithProductsSave() {
 		/***************[CascadeType.PERSIST]**************/
 		Category category1 = Category.builder()
 				.code("IT")
@@ -60,20 +64,54 @@ class CategoryRepositoryTest extends SpringJpaRelationApplicationTests{
 		System.out.println("--------------------save[CascadeType.PERSIST]-------------------");
 		categoryRepository.save(category1);
 		categoryRepository.save(category2);		
+//		System.out.println("--------------------read[CascadeType.PERSIST]-------------------");
+//		Category findCategory1 = categoryRepository.findById(1L).get();
+//		System.out.println("findCategory1:"+findCategory1);
+//		System.out.println("findCategory1:"+findCategory1.getProducts());
+//		System.out.println("--------------------delete-------------------");
+//		System.out.println("--------------------부모엔티티삭제[CascadeType.REMOVE]-------------------");
+//		
+//		System.out.println("--------------------자식엔티티삭제[CascadeType.REMOVE]-------------------");
+//		
+//		System.out.println("--------------------부모엔티티삭제[orphanRemoval = true]-------------------");
+//		
+//		System.out.println("--------------------자식엔티티삭제[orphanRemoval = true]--------------------");
+//	
+//		System.out.println("--------------------부모엔티티와자식엔티티연관관계제거[orphanRemoval = true]??-------------------");
+	}
+	
+	@Test
+	@Transactional
+	@Rollback(false)
+	@Disabled
+	void categoryWithProductsRead() {
 		System.out.println("--------------------read[CascadeType.PERSIST]-------------------");
 		Category findCategory1 = categoryRepository.findById(1L).get();
-		System.out.println("findCategory1:"+findCategory1);
-		System.out.println("findCategory1:"+findCategory1.getProducts());
-		System.out.println("--------------------delete-------------------");
-		System.out.println("--------------------부모엔티티삭제[CascadeType.REMOVE]-------------------");
+		System.out.println(">>> findCategory1:"+findCategory1);
+		System.out.println(">>> findCategory1.getProducts():"+findCategory1.getProducts());
 		
-		System.out.println("--------------------자식엔티티삭제[CascadeType.REMOVE]-------------------");
-		
-		System.out.println("--------------------부모엔티티삭제[orphanRemoval = true]-------------------");
-		
-		System.out.println("--------------------자식엔티티삭제[orphanRemoval = true]--------------------");
+	}
 	
-		System.out.println("--------------------부모엔티티와자식엔티티연관관계제거[orphanRemoval = true]??-------------------");
+	@Test
+	@Transactional
+	@Rollback(false)
+	@Disabled
+	void categoryWithProductsDelete1() {
+		System.out.println("---------------------부모엔티티삭제[CascadeType.REMOVE]---------------------");
+		Category category1 = categoryRepository.findById(1L).get();
+		List<Product> products = category1.getProducts();
+		System.out.println(">>>"+products);		
+		categoryRepository.delete(category1);
+	}
+	@Test
+	@Transactional
+	@Rollback(false)
+	void categoryWithProductsDelete2() {
+		System.out.println("---------------------자식엔티티삭제[CascadeType.REMOVE]---------------------");
+		Category category1 = categoryRepository.findById(1L).get();
+		List<Product> products = category1.getProducts();
+		products.clear();
+		categoryRepository.save(category1);
 	}
 }
 

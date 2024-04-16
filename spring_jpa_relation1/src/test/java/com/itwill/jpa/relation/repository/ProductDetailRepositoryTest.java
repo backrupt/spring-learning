@@ -18,7 +18,7 @@ class ProductDetailRepositoryTest extends SpringJpaRelationApplicationTests{
 	@Test
 	/*@Rollback(false)
 	@Transactional*/
-	void productDetailWithProductSaveRead() {
+	void productDetailWithProductSave() {
 		Product product = Product.builder().name("JPA").price(2000).stock(50).build();
 		ProductDetail productDetail = ProductDetail.builder()
 				.description("아주좋은책이에용")
@@ -26,16 +26,21 @@ class ProductDetailRepositoryTest extends SpringJpaRelationApplicationTests{
 									
 		/*
 		 연관관계설정(OWNER)
-		 ProductDetail-->Product
+		 ProductDetail에 Product set
 		*/
 		productDetail.setProduct(product);
 		productDetailRepository.save(productDetail);
 		
-		System.out.println("--------read-----------");
+	}
+	
+	@Test
+	@Transactional
+	void productDetailWithProductRead() {
 		
+		System.out.println("--------read-----------");
 		ProductDetail findProductDetail = productDetailRepository.findById(1L).get();
-		Product findProduct = findProductDetail.getProduct();		
 		System.out.println(findProductDetail);
+		Product findProduct = findProductDetail.getProduct();		
 		System.out.println(findProduct);
 	}
 	
