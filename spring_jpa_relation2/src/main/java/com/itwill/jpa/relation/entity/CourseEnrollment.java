@@ -8,12 +8,17 @@ import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.SequenceGenerator;
+import jakarta.persistence.Table;
+import jakarta.persistence.UniqueConstraint;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import lombok.ToString;
 @Entity(name = "COURSE_ENROLLMENT")
+@Table(name = "COURSE_ENROLLMENT",uniqueConstraints = {
+		@UniqueConstraint(columnNames = {"COURSE_ID","STUD_ID"},name = "COURSE_ENROLLMENT_UQ")
+})
 @Data
 @Builder
 @AllArgsConstructor

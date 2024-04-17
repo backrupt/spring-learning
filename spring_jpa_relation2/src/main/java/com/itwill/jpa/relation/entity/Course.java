@@ -60,7 +60,7 @@ public class Course  {
 	@OneToMany(mappedBy = "course")
 	private List<CourseEnrollment> courseEnrollments=new ArrayList<>();
 	
-	@ManyToOne
+	@ManyToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name = "tutor_id")
 	@ToString.Exclude
 	private Tutor tutor;
