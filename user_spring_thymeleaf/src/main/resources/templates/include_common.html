@@ -10,12 +10,12 @@
 		<p>
 			<strong>메뉴</strong>
 		</p>
-		<ul th:if="${session.sUserId==null}">
+		<ul th:if="${session.sUserId==null}"> <!-- if문 -->
 			<li><a href="user_login_form">로그인</a></li>
 			<li><a href="user_write_form">회원가입</a></li>
 		</ul>
 	
-		<ul th:unless="${session.sUserId==null}">
+		<ul th:unless="${session.sUserId==null}"> <!-- if문의 else문 -->
 			<li><a href=''>guard님</a></li>
 			<li><a href='user_view'>내정보</a></li>
 			<li><a href="user_logout_action">로그아웃</a></li>

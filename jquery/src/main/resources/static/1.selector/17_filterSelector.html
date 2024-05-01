@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>jQuery에서 제공하는 기본 필터를 이용한 HTML Element 검색</title>
+<style>
+div {
+	background: #FFF;
+	padding: 10px;
+	margin: 10px;
+}
+table {
+	border: 1px solid #AAA;
+	width: 100%
+}
+
+td {
+	border: 1px solid #AAA;
+}
+td.notSelect{
+	border: 0.5px dashed blue;
+}
+td:not(.notSelect){
+	background: pink;
+}
+
+
+</style>
+<script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+<script type="text/javascript">
+	$(function(){
+		
+		
+	});
+</script>
+</head>
+<body style="padding: 10px;">
+	<h2>jQuery에서 제공하는 기본 필터를 이용한 HTML Element 검색</h2>
+	<div>
+		<table>
+			<tr>
+				<td>#1</td>
+			</tr>
+			<tr>
+				<td>#2</td>
+			</tr>
+			<tr>
+				<td class="notSelect">#3</td>
+			</tr>
+			<tr>
+				<td class="notSelect">#4</td>
+			</tr>
+			<tr>
+				<td class="notSelect">#5</td>
+			</tr>
+			<tr>
+				<td>#6</td>
+			</tr>
+			<tr>
+				<td>#7</td>
+			</tr>
+			<tr>
+				<td>#8</td>
+			</tr>
+		</table>
+	</div>
+</body>
+</html>

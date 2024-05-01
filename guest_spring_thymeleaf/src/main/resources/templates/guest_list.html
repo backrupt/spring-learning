@@ -14,6 +14,8 @@
 	<div id="container">
 		<!-- header start -->
 		<div id="header" th:insert="~{include_common::top}">
+			<!-- Thymeleaf 템플릿에서 ~ 기호는 상대 경로를 나타내는 데 사용됩니다. -->
+			<!-- 현재 템플릿 파일의 위치를 기준으로 하겠다는 의미! -->
 			<!-- include_common::top start-->
 			<!-- include_common::top end-->
 		</div>
@@ -48,12 +50,18 @@
 										<td width=120 align=center bgcolor="E6ECDE">날짜</td>
 									</tr>
 									<tr th:each="guest:${guestList}" th:object="${guest}">
+									<!-- Thymeleaf th:each 속성은 반복 가능한 데이터 목록을 기반으로 HTML 요소를 반복적으로 생성하는 데 사용됩니다. -->
+									<!-- 한마디로 반복문 -->
 										<td width=50 align=center bgcolor="ffffff" height="20" th:text="*{guestNo}">223</td>
+											<!-- th:objet="${guest} 를 이용해서 th:text="*{guestNo} 처럼 ${guest.guestName} 보다 축약해서 코드 작성 가능 -->
 										<td width=300 bgcolor="ffffff" style="padding-left: 10">
 											<a th:href="@{guest_view(guest_no=${guest.guestNo})}" href="guest_view?guest_no=223" class="user" th:text="*{guestTitle}">오늘도 한대 맞았다</a>
+											<!-- th:href="" 동적으로 url을 생성 -->
 										</td>
 										<td width=120 align=center bgcolor="ffffff" th:text="${guest.guestName}">어퍼컷!!!!!</td>
 										<td width=120 align=center bgcolor="ffffff" th:text="${#calendars.format(guest.guestDate,'yyyy-MM-dd')}">2023-09-11</td>
+										<!-- #calendars는 Thymeleaf에서 날짜/시간 관련 유틸리티를 제공하는 객체 -->
+										<!-- format(guest.guestDate,'yyyy-MM-dd') #calendars 객체의 format 메서드를 호출 -->
 									</tr>
 									
 								</table>

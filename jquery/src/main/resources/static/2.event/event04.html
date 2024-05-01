@@ -1,0 +1,48 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>jQuery에서 제공하는 Event 핸들링 메소드</title>
+<style>
+div,pre {
+	background: #FFF;
+	padding: 10px;
+	margin: 10px;
+}
+</style>
+<script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+<script type="text/javascript">
+$(function() {
+	
+	/*
+	현재DOM Tree에있는 엘레멘트만 이벤트처리
+	*/
+	/*
+	$('li').click(function(e){
+		alert($(e.target).text());
+	});
+	*/
+	/*
+	현재DOM Tree의 ul 에 자식으로 동적으로추가되는 li 엘레멘트도 이벤트처리
+	*/
+	
+	/*
+	동적노드추가버튼 이벤트처리
+	*/
+	
+});
+
+
+</script>
+</head>
+
+<body style="padding: 10px;">
+	<h2>jQuery에서 제공하는 Event 핸들링 메소드</h2>
+	<div>
+		<ul>
+			<li>list item 0</li>
+		</ul>
+		<input type="button" id="btnAdd" value="Add Element" /> 
+	</div>
+</body>
+</html>

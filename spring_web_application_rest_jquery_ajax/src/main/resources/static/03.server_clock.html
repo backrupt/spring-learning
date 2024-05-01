@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<script type="text/javascript" src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+<script type="text/javascript">
+	$(function(){
+		window.setInterval(function(){
+			$.ajax({
+				url:'03.server_clock',
+				method:'get',
+				dataType:'text',
+				success:function(responseServerTime){
+					$('#serverTimeSpan').html(responseServerTime);	
+				}
+			});
+		},1000)
+	})
+</script>
+</head>
+<body>
+<h1>clock[window.setTimeout,window.setInterval]</h1><hr/>
+<div>현재서버의시간은 <span id='serverTimeSpan'>12:45:45</span></div>
+</body>
+</html>
+
+

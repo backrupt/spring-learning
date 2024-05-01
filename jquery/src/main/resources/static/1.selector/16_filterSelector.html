@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>jQuery에서 제공하는 기본 필터를 이용한 HTML Element 검색</title>
+<style>
+div {
+	background: #FFF;
+	padding: 10px;
+	margin: 10px;
+}
+table {
+	border: 1px solid #AAA;
+}
+td{
+	border: 1px solid #AAA;
+	width: 40px;
+	height: 40px;
+}
+
+/*
+가상(pseudo) 클래스(의사 클래스)
+   
+   ● 표준 가상(pseudo) 클래스
+	 - CSS 가상 클래스(의사 클래스)는 선택자에 추가하는 키워드로, 
+	   선택한 요소가 특별한 상태여야 만족할 수 있습니다. 
+	   ex > 예를 들어 :hover를 사용하면 포인터를 올렸을 때에만 글씨 색을 바꾸고 싶을 때 
+	        사용할 수 있습니다
+	 - https://developer.mozilla.org/ko/docs/Web/CSS/Pseudo-classes
+   ●  jQuery에서 제공하는 가상(pseudo) 클래스
+	   ex> :eq(0),:odd , :even
+   ● 가상(pseudo) 클래스를 사용한 스타일 적용 방법
+	  - 아래와 같은 가상 클래스(pseudo-class)를 사용하여 
+	    링크에 다양한 스타일을 적용할 수 있습니다.
+		1. a:link 방문 전 링크 상태
+		2. a:visited 방문 후 링크 상태
+		3. a:hover 마우스 오버했을 때 링크 상태
+		※ 스타일 적용 순서는 위 번호 순대로 하는 게 좋습니다. 
+		   순서가 바뀌면 스타일에 제대로 적용되지 않습니다~
+		※ LVHA-순서(:link — :visited — :hover — :active)
+
+*/
+	a{
+		text-decoration: none;
+		cursor: pointer;
+	}
+	a:link{
+		color: gray;
+	}
+	a:visited{
+		color:maroon;
+	}
+	a:hover{
+		color:pink;
+		background: cyan;
+		cursor: progress;
+	}
+	a:active{
+		background: white;
+		font-size: 30pt;
+	}
+	h2::first-letter{
+		font-size: 50pt;
+		color:red;
+	}
+	/*
+	tr:first-child{
+		background: green;
+	}
+	td:first-child{
+		background: pink;
+	}
+	tr:last-child{
+		font-size: 30pt;
+		color:blue;
+	}
+	*/
+	
+</style>
+
+<script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+<script type="text/javascript">
+	window.$(function(){
+		
+	});
+</script>
+</head>
+<body style="padding: 10px;">
+	<h2>jQuery에서 제공하는 기본 필터를 이용한 HTML Element 검색</h2>
+	<a href='17_filterSelector.html'>가상클래스를 사용한 a tag style설정</a>
+	<div>
+		<table>
+			<tr>
+				<td>#1</td>
+				<td>#2</td>
+				<td>#3</td>
+				<td>#4</td>
+				<td>#5</td>
+				<td>#6</td>
+				<td>#7</td>
+				<td>#8</td>
+				<td>#9</td>
+				<td>#10</td>
+			</tr>
+			<tr>
+				<td>#11</td>
+				<td>#12</td>
+				<td>#13</td>
+				<td>#14</td>
+				<td>#15</td>
+				<td>#16</td>
+				<td>#17</td>
+				<td>#18</td>
+				<td>#19</td>
+				<td>#20</td>
+			</tr>
+			<tr>
+				<td>#21</td>
+				<td>#22</td>
+				<td>#23</td>
+				<td>#24</td>
+				<td>#25</td>
+				<td>#26</td>
+				<td>#27</td>
+				<td>#28</td>
+				<td>#29</td>
+				<td>#30</td>
+			</tr>
+			<tr>
+				<td>#31</td>
+				<td>#32</td>
+				<td>#33</td>
+				<td>#34</td>
+				<td>#35</td>
+				<td>#36</td>
+				<td>#37</td>
+				<td>#38</td>
+				<td>#39</td>
+				<td>#40</td>
+			</tr>
+		</table>
+	</div>
+</body>
+</html>

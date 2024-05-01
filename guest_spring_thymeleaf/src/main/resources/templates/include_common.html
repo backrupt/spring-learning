@@ -3,10 +3,12 @@
 
 <body>
 
-	<h1 th:fragment="top">
+	<h1 th:fragment="top"> 
+	<!-- fragment를 줌으로써 다른 템플릿에 삽입 가능! --> 
 		<a href="">방명록 [guest spring thymeleaf]</a>
 	</h1>
-	<div th:fragment="left" th:remove="tag">
+	<div th:fragment="left" th:remove="tag"> 
+	<!-- remove속성을 줌으로써 템플릿 렌더링 과정에서 지정된 요소를 제거! -->
 		<p>
 			<strong>메 뉴</strong>
 		</p>

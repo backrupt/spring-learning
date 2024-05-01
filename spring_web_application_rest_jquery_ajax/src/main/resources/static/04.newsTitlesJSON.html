@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<style type="text/css">
+	/*
+	1.tag selector
+	*/
+	h1{
+		color: blue;
+		text-align: center;
+	}
+	ul{
+		list-style: none;
+		padding-left: 0px;
+	}
+	/*
+	2. class selector
+	*/
+	.titleBackClass{
+		background-color: yellow;
+	}
+	/*
+	3.id selector
+	*/
+	#content{
+		border: 1px solid black; 
+		width: 80%;
+		margin-top:50px; 
+		margin-right:auto; 
+		margin-left:auto; 
+		margin-bottom:50px; 
+		padding: 20px;
+	}
+	#newsDiv{
+		padding-left: 10%;
+		border: 1px solid blue;
+		font-size: 13pt;
+		background: orange;
+	}
+	
+</style>
+<script type="text/javascript" src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+<script type="text/javascript">
+/*
+{
+	"status":1,
+	"msg":"",
+	"data": [
+				{
+					"newsTitle":"참으로 수고 많으셨습니다…",
+					"company":"연합뉴스",
+					"date":"2020. 10. 16 오후 12:44:38"
+				},
+				{
+					"newsTitle":"IS 60개국 테러 위협 영상 공개…한국도 포함 포토",
+					"company":"SBS뉴스",
+					"date":"2020. 10. 16 오후 12:44:38"
+				}
+			]
+}
+*/
+	$(function(){
+		setInterval(function(){
+			$.ajax({
+				url:'04.newsTitlesJSON',
+				method:'get',
+				dataType:'json',
+				success:function(responseJsonObject){
+					let html = responseJsonObject.data.map((news)=>{
+						return `<li>${news.title}[${news.company}-${news.date}]</li>`;
+					}).join('');
+					console.log(html);
+					$('ul').html(html);
+				}
+			});
+		},2000);
+	});
+</script>
+</head>
+<body>
+<div id="content">
+	<h1 class="titleBackClass" >실시간늬우스[JSON]</h1><hr>
+	<div id="newsDiv">
+		<ul>
+			<li>뉴스1[조상일보]2019-10-07</li>		
+			<li>뉴스2[동앙일보]2019-10-07</li>		
+			<li>뉴스3[중상일보]2019-10-07</li>		
+		</ul>
+	</div>
+
+</div>
+</body>
+</html>
