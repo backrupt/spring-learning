@@ -1,0 +1,50 @@
+#server:
+#  servlet:
+#    session:
+#      timeout: 30m  # 기본값은 30m(30분) m을 붙이지 않으면 초단위로 설정됨. 최소 60초 이상일 것
+#      tracking-modes: cookie  #최초접속 시 url에 jsession안붙게
+#  port: 8080
+#logging:
+#  level:
+#    org: 
+#      springframework: 
+#        security: trace
+#
+#spring:
+#  servlet:
+#    multipart:
+#      enabled: true
+#      maxFileSize: 30MB     #파일의 최대 사이즈
+#      maxRequestSize: 30MB  #요청한 최대 사이즈
+#  devtools:
+#    livereload:
+#      enabled: true
+#    restart:
+#      enabled: true
+#  datasource:
+#    url: jdbc:oracle:thin:@182.237.126.19:1521:XE
+#    username: jdeveloper00
+#    password: jdeveloper00
+#  mvc:
+#    pathmatch: 
+#      matching-strategy: ANT_PATH_MATCHER    
+#  jpa:
+#    show-sql: true
+#    generate-ddl: true
+#    properties:
+#      hibernate: 
+#        format_sql: true
+#        use_sql_comments: true
+#    hibernate:
+#      ddl-auto: update
+#    database-platform: org.hibernate.dialect.Oracle10gDialect
+#
+#
+#  mail:
+#    username: guard883@naver.com
+#  profiles:
+#    include: oauth
+#
+#custom:
+#  path:
+#    upload-images: C:\2022-11-JAVA-DEVELOPER\upload_images
