@@ -1,6 +1,4 @@
-
 spring:
-#####################################################################################
   security:
     oauth2:
       client:
@@ -20,8 +18,8 @@ spring:
             client-name: Kakao
           # 네이버는 Spring Security를 공식 지원하지 않기 때문에 CommonOAuth2Provider 에서 해주는 값들을 수동으로 입력한다.
           naver:
-            client-id: uKiP7WPNBZBkt2l_R87L
-            client-secret: bMK2yjMkyl
+            client-id: eZbrSiJjtMr7f7ZmwbfT
+            client-secret: H4_lNYU5Cc
             scope:
               - name
               - email
