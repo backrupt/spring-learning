@@ -9,7 +9,6 @@ import org.hibernate.annotations.UpdateTimestamp;
 
 import com.itwill.jpa.dto.ProductDto;
 
-import jakarta.annotation.Generated;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -20,35 +19,37 @@ import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-
-@AllArgsConstructor
-@NoArgsConstructor
 @Builder
 @Data
+@NoArgsConstructor
+@AllArgsConstructor
 @Entity
 @DynamicUpdate
 public class Product {
 	@Id
-	@GeneratedValue(strategy = GenerationType.SEQUENCE,generator = "product_seq")
+	@GeneratedValue(strategy = GenerationType.SEQUENCE ,generator ="product_seq" )
 	@SequenceGenerator(name = "product_seq",initialValue = 1,allocationSize = 1)
     private Long productId;
 	private String name;
     private Integer price;
     private Integer stock;
     
-    @ColumnDefault("sysdate") // column default
-    @CreationTimestamp //JPA에서 날짜 최초한번 자동 insert
-    @Column(updatable = false) //JPA에서 이후 업데이트 안함
+    @ColumnDefault("sysdate")// column default
+    @CreationTimestamp			//JPA에서 날짜 최초한번 자동 insert
+    @Column(updatable = false)	//JPA에서 이후업데이트안함
     private LocalDateTime createdAt;
-    @UpdateTimestamp 	//JPA에서 수정시 자동 update
+    @UpdateTimestamp	//JPA에서 수정시자동 update
     private LocalDateTime updatedAt;
     
     public static Product toEntity(ProductDto productDto) {
-		return Product.builder()
-				.productId(productDto.getProductId())
-				.name(productDto.getName())
-				.price(productDto.getPrice())
-				.stock(productDto.getStock())
-				.build();
-	}
+    	
+    	return Product.builder()
+    			.productId(productDto.getProductId())
+    			.name(productDto.getName())    
+    			.price(productDto.getPrice())    
+    			.stock(productDto.getStock())    
+    			.build();
+    	
+    }
+    
 }

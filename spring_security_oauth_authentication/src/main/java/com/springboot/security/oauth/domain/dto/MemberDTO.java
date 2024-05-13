@@ -64,7 +64,7 @@ public class MemberDTO {
 
 		@Nickname
 		private String nickname;
-	}
+	} 
 
 	@Getter
 	@ToString
