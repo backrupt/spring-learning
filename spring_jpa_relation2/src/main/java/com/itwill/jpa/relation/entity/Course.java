@@ -61,7 +61,7 @@ public class Course  {
 	private List<CourseEnrollment> courseEnrollments=new ArrayList<>();
 	
 	@ManyToOne(fetch = FetchType.LAZY)
-	@JoinColumn(name = "tutor_id")
+	@JoinColumn(name = "tutor_iddd")
 	@ToString.Exclude
 	private Tutor tutor;
 	

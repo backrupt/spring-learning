@@ -46,7 +46,7 @@ public class Address {
 	private String zip;
 	private String country;
 	
-	@OneToMany(mappedBy = "address",cascade = CascadeType.PERSIST,fetch = FetchType.LAZY)
+	@OneToMany(mappedBy = "address",cascade = CascadeType.PERSIST,fetch = FetchType.EAGER )
 	@Builder.Default
 	@ToString.Exclude
 	private List<Student> students = new ArrayList<>();

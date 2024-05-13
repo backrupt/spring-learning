@@ -47,7 +47,7 @@ public class Student {
 	@SequenceGenerator(name = "STUDENT_STUD_ID_SEQ", sequenceName = "STUDENT_STUD_ID_SEQ", initialValue = 1, allocationSize = 1)
 	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "STUDENT_STUD_ID_SEQ")
 	private Long studId;
-	@Column(nullable = false)
+	@Column(nullable = false) 
 	private String name;
 	
 	private String email;

@@ -4,6 +4,7 @@ import java.util.Date;
 
 import org.hibernate.annotations.CreationTimestamp;
 
+import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -32,7 +33,7 @@ public class ChatMessage {
 	@CreationTimestamp
 	private Date createdDate;
 	@ManyToOne
-	@JoinColumn(name = "no")
+	@JoinColumn(name = "chat_room_no")
 	@ToString.Exclude
 	private ChatRoom chatRoom;
 }

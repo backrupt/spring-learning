@@ -29,9 +29,9 @@ public class Survey {
 	private Long no;
 	private Long height;
 	private Long weight;
-	@ManyToOne()
+	@ManyToOne
 	@ToString.Exclude
-	@JoinColumn(name = "users_no")
+	@JoinColumn(name = "user_no")
 	private User user;
 	@Builder.Default
 	@OneToMany(mappedBy = "survey")
