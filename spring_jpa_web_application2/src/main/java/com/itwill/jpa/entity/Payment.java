@@ -42,6 +42,6 @@ public class Payment {
     @JoinColumn(name = "user_no")
     private User user;
     @OneToOne(mappedBy = "payment" ,fetch = FetchType.LAZY,cascade = CascadeType.ALL)
-    private Orders orders;
+    private Order order;
     
 }
