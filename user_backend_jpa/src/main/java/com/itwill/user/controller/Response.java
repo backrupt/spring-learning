@@ -13,8 +13,8 @@ public class Response {
 
     public Response() {
         this.status = 0;
-        this.data =new HashMap<>();
         this.message = "";
+        this.data =new HashMap<>();
     }
     
 }

@@ -22,7 +22,7 @@
 		let parts = document.cookie.split(name + '=');
 		if (parts.length === 2) {
 			return parts[1].split(';')[0];
-		}
+		}	
 	}
 	function requestUserInfo() {
 		let authorize_access_token = getCookie('authorize_access_token');
